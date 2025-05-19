@@ -313,6 +313,8 @@ func (s *storageSnapshotResource) ImportState(ctx context.Context, req resource.
 }
 
 func (s *storageSnapshotResource) GetStorageSnapshot(ctx context.Context, name string) (goEldelta.StorageSnapShot, error) {
+
+	//adding new param
 	snapshots, err := s.client.Storage.ListSnapshots(ctx, nil)
 	if err != nil {
 		return goEldelta.StorageSnapShot{}, err
