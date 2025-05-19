@@ -34,7 +34,7 @@ type vpcResourceModel struct {
 	InterfaceNumber  types.Int64  `tfsdk:"interface_number"`
 	NetworkTagNumber types.Int64  `tfsdk:"network_tag_number"`
 	NetworkRange     types.String `tfsdk:"network_range"`
-	NetworkSize      types.Int64  `tfsdk:"network_size"`
+	NetworkSize      types.String `tfsdk:"network_size"`
 	IsDefault        types.Int64  `tfsdk:"is_default"`
 	CreatedBy        types.Int64  `tfsdk:"created_by"`
 	UpdatedBy        types.Int64  `tfsdk:"updated_by"`
@@ -49,6 +49,7 @@ type vpcResourceModel struct {
 	State            types.String `tfsdk:"state"`
 	DcName           types.String `tfsdk:"dc_name"`
 	DcIdentifier     types.String `tfsdk:"dc_identifier"`
+	AutoGenerate     types.Int64  `tfsdk:"auto_generate"`
 }
 
 func NewVpcResource() resource.Resource {
@@ -78,10 +79,10 @@ func (v *vpcResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *
 				Required: true,
 			},
 			"network_size": schema.StringAttribute{
-				Required: true,
+				Optional: true,
 			},
 			"network_range": schema.StringAttribute{
-				Required: true,
+				Optional: true,
 			},
 			"description": schema.StringAttribute{
 				Optional: true,
@@ -225,8 +226,17 @@ func (v *vpcResource) Create(ctx context.Context, req resource.CreateRequest, re
 	if resp.Diagnostics.HasError() {
 		return
 	}
+	// Build request body for CreateVpc API
+	var createRequest *goEldelta.CreateVpcReq = &goEldelta.CreateVpcReq{}
 
-	err := v.client.VPC.CreateVpc(ctx, nil)
+	createRequest.Name = plan.Name.ValueString()
+	createRequest.DcIdentifier = plan.DcIdentifier.ValueString()
+	createRequest.AutoGenerate = int(plan.AutoGenerate.ValueInt64())
+	createRequest.NetworkRange = plan.NetworkRange.ValueString()
+	createRequest.NetworkSize = plan.NetworkSize.ValueString()
+	createRequest.Description = plan.Description.ValueString()
+	//adding missing fields
+	err := v.client.VPC.CreateVpc(ctx, createRequest)
 	if err != nil {
 		resp.Diagnostics.AddError("Error creating VPC", err.Error())
 		return
@@ -253,7 +263,7 @@ func (v *vpcResource) Create(ctx context.Context, req resource.CreateRequest, re
 	plan.DatacenterID = types.Int64Value(int64(vpc.DatacenterID))
 	plan.InterfaceNumber = types.Int64Value(int64(vpc.InterfaceNumber))
 	plan.NetworkTagNumber = types.Int64Value(int64(vpc.NetworkTagNumber))
-	plan.NetworkSize = types.Int64Value(int64(vpc.NetworkSize))
+	plan.NetworkSize = types.StringValue(vpc.NetworkSize)
 	plan.LowIPNum = types.Int64Value(int64(vpc.LowIPNum))
 	plan.HightIPNum = types.Int64Value(int64(vpc.HightIPNum))
 	plan.IsUpcNetwork = types.Int64Value(int64(vpc.IsUpcNetwork))
@@ -300,7 +310,7 @@ func (v *vpcResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 	state.DatacenterID = types.Int64Value(int64(vpc.DatacenterID))
 	state.InterfaceNumber = types.Int64Value(int64(vpc.InterfaceNumber))
 	state.NetworkTagNumber = types.Int64Value(int64(vpc.NetworkTagNumber))
-	state.NetworkSize = types.Int64Value(int64(vpc.NetworkSize))
+	state.NetworkSize = types.StringValue((vpc.NetworkSize))
 	state.LowIPNum = types.Int64Value(int64(vpc.LowIPNum))
 	state.HightIPNum = types.Int64Value(int64(vpc.HightIPNum))
 	state.IsUpcNetwork = types.Int64Value(int64(vpc.IsUpcNetwork))

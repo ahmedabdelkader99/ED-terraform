@@ -29,7 +29,7 @@ type vpcsModel struct {
 	InterfaceNumber  types.Int64  `tfsdk:"interface_number"`
 	NetworkTagNumber types.Int64  `tfsdk:"network_tag_number"`
 	NetworkRange     types.String `tfsdk:"network_range"`
-	NetworkSize      types.Int64  `tfsdk:"network_size"`
+	NetworkSize      types.String `tfsdk:"network_size"`
 	IsDefault        types.Int64  `tfsdk:"is_default"`
 	CreatedBy        types.Int64  `tfsdk:"created_by"`
 	UpdatedBy        types.Int64  `tfsdk:"updated_by"`
@@ -171,7 +171,7 @@ func (v *vpcDataSource) Read(ctx context.Context, req datasource.ReadRequest, re
 			InterfaceNumber:  types.Int64Value(int64(vpc.InterfaceNumber)),
 			NetworkTagNumber: types.Int64Value(int64(vpc.NetworkTagNumber)),
 			NetworkRange:     types.StringValue(vpc.NetworkRange),
-			NetworkSize:      types.Int64Value(int64(vpc.NetworkSize)),
+			NetworkSize:      types.StringValue(vpc.NetworkSize),
 			IsDefault:        types.Int64Value(int64(vpc.IsDefault)),
 			CreatedBy:        types.Int64Value(int64(vpc.CreatedBy)),
 			UpdatedBy:        types.Int64Value(int64(vpc.UpdatedBy)),

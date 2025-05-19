@@ -4,7 +4,7 @@ go 1.23.0
 
 toolchain go1.24.2
 
-replace github.com/ahmedabdelkader99/goEldelta => "/home/aake/Ahmad/eldelta/ED-terrafform/goEldelta"
+replace github.com/ahmedabdelkader99/goEldelta => "/home/aake/Ahmad /eldelta/ED-terrafform/goEldelta"
 
 require (
 	github.com/ahmedabdelkader99/goEldelta v0.0.0-20240420101606-da19aed56073
