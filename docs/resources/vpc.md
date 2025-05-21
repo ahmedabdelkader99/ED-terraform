@@ -20,12 +20,13 @@ description: |-
 - `auto_generate` (Number)
 - `dc_identifier` (String)
 - `name` (String)
-- `network_range` (String)
-- `network_size` (String)
+
 
 ### Optional
 
 - `description` (String)
+- `network_range` (String)
+- `network_size` (String)
 
 ### Read-Only
 

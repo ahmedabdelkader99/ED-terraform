@@ -53,3 +53,7 @@ export VPSIE_API_URL="https://api.el-deltacloud.com/api/v2"
 Make sure to replace `"YOUR TOKEN"` with your actual access token.
 
 You’re now ready to use the Terraform provider for ED!
+
+*********************************For windows***************************************
+
+
