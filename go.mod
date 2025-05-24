@@ -4,14 +4,14 @@ go 1.23.0
 
 toolchain go1.24.2
 
-replace github.com/ahmedabdelkader99/goEldelta => "/home/aake/Ahmad /eldelta/ED-terrafform/goEldelta"
+replace github.com/ahmedabdelkader99/goEldelta => /home/aake/Ahmad /eldelta/ED-terrafform/goEldelta
 
 require (
 	github.com/ahmedabdelkader99/goEldelta v0.0.0-20240420101606-da19aed56073
 	github.com/hashicorp/terraform-plugin-docs v0.17.0
 	github.com/hashicorp/terraform-plugin-framework v1.15.0
 	github.com/hashicorp/terraform-plugin-framework-timeouts v0.4.1
-	github.com/hashicorp/terraform-plugin-go v0.27.0
+	github.com/hashicorp/terraform-plugin-go v0.28.0
 	github.com/hashicorp/terraform-plugin-log v0.9.0
 	github.com/hashicorp/terraform-plugin-testing v1.6.0
 	golang.org/x/oauth2 v0.30.0
