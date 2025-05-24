@@ -11,8 +11,8 @@ provider "vpsie" {
 }
 
 resource "vpsie_storage_attachement" "attach" {
-  vm_identifier      = "adf7e70d-30b6-11f0-a853-4602664ee99b"
-  storage_identifier = "12b32125-3170-11f0-b352-4602664ee99b"
+  vm_identifier      = "8a9ba78f-36f8-11f0-9da2-4602664ee99b"
+  storage_identifier = "077074b7-3704-11f0-9da2-4602664ee99b"
   vm_type            = "vm"
 }
 

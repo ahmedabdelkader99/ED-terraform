@@ -10,27 +10,20 @@ terraform {
 provider "vpsie" {
 }
 
-
-
-# resource "vpsie_domain" "domain" {
-#   domain_name = "test.com"
-#   project_identifier= "923533c8-78clearc5-11ef-b05b-4602664ee99b"
-  
-# }
-
-
-
-resource "vpsie_server" "server" {
+resource "vpsie_server" "testing" {
   project_id          = "923533c8-78c5-11ef-b05b-4602664ee99b"
-  hostname            = "Ahmed-terraform"
+  #project_id          = "1037"
+  hostname            = "aa"
   dc_identifier       = "53432a5b-7c65-11ed-a985-d2e1e5d48ad6"
   os_identifier       = "dcc5e85d-5ba5-11ed-b1d1-0050569c68dc"
   resource_identifier = "b25aaad1-a865-11ec-b8c2-d2e1e5d48ad6"
   password            = "ExeMrq@y@6azxYQ"
-  count = 3
+  add_private_ip      = 1
+
+
 }
 
 output "server_test" {
   sensitive = true
-  value     = vpsie_server.server
+  value     = vpsie_server.testing
 }

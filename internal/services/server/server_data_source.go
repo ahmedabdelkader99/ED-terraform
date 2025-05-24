@@ -196,7 +196,7 @@ func (s *serverDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 						"power": schema.Int64Attribute{
 							Computed: true,
 						},
-						"project_id": schema.StringAttribute{
+						"project_id": schema.Int64Attribute{
 							Computed: true,
 						},
 						"is_custom": schema.Int64Attribute{

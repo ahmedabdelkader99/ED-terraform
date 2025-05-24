@@ -12,10 +12,8 @@ To install the project, first install both **Terraform** and **Go**.
 - in your `go.mod` file, make sure to replace the line:
 
 ```go
-replace github.com/ahmedabdelkader99/goEldelta => "/home/aake/Ahmad/eldelta/ED-terrafform/goEldelta"
+replace github.com/ahmedabdelkader99/goEldelta => "path to your sdk 'goEldelta '"
 ```
-
-with your actual SDK path (replace `/home/aake/Ahmad` accordingly).
 
 Next, in the root of your project directory `TERRAFORM-PROVIDER-ED-MAIN`, run:
 
@@ -36,8 +34,8 @@ Add the following:
 ```hcl
 provider_installation {
   dev_overrides {
-    #MAKE SURE TO REPLACE `/home/aake`
-    "registry.terraform.local/hashicorp/vpsie" = "/home/aake/go/bin"
+    #MAKE SURE TO REPLACE `/your path/go/bin`
+    "registry.terraform.local/hashicorp/vpsie" = "your path/go/bin"
   }
   direct {}
 }
